@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+   name: ni
+spec:
+   shareProcessNamespace: true
+   hostname: ni
+   containers:
+   - name: ni
+     image: ni.img
+     imagePullPolicy: IfNotPresent
+     ports:
+       - containerPort: 18080
+     stdin: true
+     tty: true
+     command: ["/bin/bash"]
+     args: ["-c","/opt/nifi-registry-0.5.0/bin/nifi-registry.sh run"]
